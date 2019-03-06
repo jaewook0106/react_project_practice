@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 // import logo from './logo.svg';
 import './App.css';
-import Movie from './Movie';
-
+import Movie from './components/Movie';
+import Game from './components/BoardGame';
 
 // render : componentWillMount() -> render() -> componentDidMount()
 // update componentWillReceiveProps() -> shouldComponentUpdate() -> componentWillUpdate() -> render() ->  componentDidUpdate()
@@ -21,14 +21,14 @@ class App extends Component {
         title:'Full Metal Jacket',
         poster:'http://image.chosun.com/sitedata/image/201711/22/2017112202461_0.jpg'
       },
-      { 
-        title:'Oldboy',
-        poster:'http://image.chosun.com/sitedata/image/201711/22/2017112202461_0.jpg'
-      },
-      { 
-        title:'Star Wars',
-        poster:'http://image.chosun.com/sitedata/image/201711/22/2017112202461_0.jpg'
-      }
+      // { 
+      //   title:'Oldboy',
+      //   poster:'http://image.chosun.com/sitedata/image/201711/22/2017112202461_0.jpg'
+      // },
+      // { 
+      //   title:'Star Wars',
+      //   poster:'http://image.chosun.com/sitedata/image/201711/22/2017112202461_0.jpg'
+      // }
     ]
   }
 
@@ -65,11 +65,11 @@ class App extends Component {
     },2000)
   }
 
-  
+
   _renderLoading = () =>{
     const loadingTest = this.state.loadingData.map((loading,idx) => {
       return (
-        <div>{loading.name}</div>
+        <div key={idx}>{loading.name}</div>
       )
     })
     return loadingTest
@@ -78,11 +78,10 @@ class App extends Component {
   render() {
     console.log('render')
 
-    
-
     return (
       
       <div className="App">
+
         <div>
         {this.state.loadingData ? this._renderLoading(): 'loading'}
         </div>
@@ -91,9 +90,16 @@ class App extends Component {
           return <Movie title={movie.title} poster={movie.poster} key={idx} />
         })}
 
+
+        <div>
+          <h2>보드 게임</h2>
+          <Game />
+        </div>
+
         
       </div>
     );
+    
   }
 }
 
